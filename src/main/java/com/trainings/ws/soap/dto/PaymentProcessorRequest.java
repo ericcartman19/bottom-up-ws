@@ -11,7 +11,7 @@ public class PaymentProcessorRequest {
 
 	@XmlElement(name="creditCardInfo", required=true)
 	private CreditCardInfo creditCardInfo;
-	@XmlElement(name="double", required=true)
+	@XmlElement(name="amount", required=true)
 	private Double amount;
 
 	public CreditCardInfo getCreditCardInfo() {
