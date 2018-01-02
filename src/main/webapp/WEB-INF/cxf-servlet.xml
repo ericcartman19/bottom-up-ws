@@ -13,8 +13,27 @@
 				o hacerlo de la siguiente manera -->
 			<bean class="com.trainings.ws.soap.PaymentProcessorImpl" />
 		</jaxws:serviceBean>
+		
+		<!-- implementamos user token profile -->
+		<jaxws:inInterceptors>
+			<bean class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
+				<constructor-arg>
+					<map>
+						<entry key="action" value="UsernameToken"/>
+						<entry key="passwordType" value="PasswordText" />
+						<!-- aqui hacemos referencia al bean, que apunta a la clase el cual nos dar'a el passorw
+						asociado al username, y que cxf va a comparar -->
+						<entry key="passwordCallbackRef" value-ref="myPasswordCallback" />
+					</map>
+				</constructor-arg>
+			</bean>
+		</jaxws:inInterceptors>
+		
 	</jaxws:server>
-
+	
+	<!-- definimos este bean el cual sera utilizdo para la implementacion del user token profile -->
+	<bean id="myPasswordCallback" class="com.trainings.ws.soap.UTPasswordCallback" />
+	
 	<cxf:bus>
 		<cxf:features>
 			<cxf:logging />
