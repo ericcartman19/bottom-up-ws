@@ -12,5 +12,5 @@ public interface PaymentProcessor {
 
 	// @WebParam is not mandatory
 	public @WebResult(name="response") PaymentProcessorResponse processPayment(
-			@WebParam(name = "paymentProcessorRequest") PaymentProcessorRequest paymentProcessorRequest);
+			@WebParam(name = "paymentProcessorRequest") PaymentProcessorRequest paymentProcessorRequest) throws Exception;
 }
